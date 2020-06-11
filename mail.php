@@ -11,6 +11,7 @@ require_once 'connection.php';
     <title>Обратная связь</title>
 </head>
 <body>
+<div class="container">
 <?php
 $back = "<p><a href=\"javascript: history.back()\">Вернуться назад</a></p>";
 
@@ -42,5 +43,6 @@ else {
     exit;
 }
 ?>
+</div>
 </body>
 </html>

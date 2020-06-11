@@ -16,28 +16,18 @@ require_once 'connection.php';
     <div class="container">
         <h3>Запись на демонстрацию системы iFORA</h3><br />
         <form action="mail.php" method="post" onSubmit="return checkForm(this)">
-            <label>
-                <input class="form-control" type="text" name="name" placeholder="ФИО" required/>
-            </label><br />
+            <input class="form-control" type="text" name="name" placeholder="ФИО" required/><br />
             <div class="form-row">
                 <div class="col">
-                    <label>
-                        <input class="form-control" type="text" name="phone" placeholder="Телефон"/>
-                    </label>
+                    <input class="form-control" type="text" name="phone" placeholder="Телефон"/>
                 </div>
                 /
                 <div class="col">
-                    <label>
-                        <input class="form-control" type="text" name="mail" placeholder="E-mail"/>
-                    </label><br />
+                    <input class="form-control" type="text" name="mail" placeholder="E-mail"/><br />
                 </div>
             </div>
-            <label>
-                <input class="form-control" type="datetime-local" name="date" required/>
-            </label><br />
-            <label>
-                <textarea class="form-control" name="message" placeholder="Комментарий к письму"></textarea>
-            </label><br />
+            <input class="form-control" type="datetime-local" name="date" required/><br />
+            <textarea class="form-control" name="message" placeholder="Комментарий к письму"></textarea><br />
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
     </div>

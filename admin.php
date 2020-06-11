@@ -18,9 +18,9 @@ require_once 'connection.php';
     function login($login,$password) {
         global $link;
         $loginResult = mysqli_query($link,"SELECT * FROM userlist WHERE login='$login' AND password='$password' AND admin='1'");
-        if(mysqli_num_rows($loginResult) == 1) {  //Если есть совпадение,
+        if(mysqli_num_rows($loginResult) == 1) {
             return true;
-        } else {//Если такого пользователя не существует, данные стираются,
+        } else {
             unset($_SESSION['login'],$_SESSION['password']);
             return false;
         }
@@ -30,8 +30,7 @@ require_once 'connection.php';
         $_SESSION['password'] = $_POST['password'];
     }
     if(isset($_SESSION['login']) && isset($_SESSION['password'])) {
-        if(login($_SESSION['login'],$_SESSION['password'])) {//Попытка авторизации
-            //Тут будут проходить все операции
+        if(login($_SESSION['login'],$_SESSION['password'])) {
             ?>
             <table class="table" id="my-table-id">
                 <thead>
@@ -60,7 +59,7 @@ require_once 'connection.php';
             </table>
             <button type="submit" class="btn btn-outline-primary" onClick="ExportToExcel()">Скачать</button>
             <?
-            $echo = null; //Обнуление переменной, чтобы удалить из вывода    форму авторизации
+            $echo = null;
         }
         else {
             echo "Логин и пароль не верны.";

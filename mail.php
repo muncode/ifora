@@ -14,7 +14,7 @@ require_once 'connection.php';
 <?php
 $back = "<p><a href=\"javascript: history.back()\">Вернуться назад</a></p>";
 
-if(!empty($_POST['name']) and !empty($_POST['phone']) and !empty($_POST['mail']) and !empty($_POST['date'])){
+if(!empty($_POST['name']) and (!empty($_POST['phone']) or !empty($_POST['mail'])) and !empty($_POST['date'])){
     $name = trim(strip_tags($_POST['name']));
     $phone = trim(strip_tags($_POST['phone']));
     $mail = trim(strip_tags($_POST['mail']));

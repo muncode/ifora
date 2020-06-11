@@ -14,6 +14,7 @@ require_once 'connection.php';
     </head>
     <body>
     <div class="container">
+        <br />
         <h3>Запись на демонстрацию системы iFORA</h3><br />
         <form action="mail.php" method="post" onSubmit="return checkForm(this)">
             <input class="form-control" type="text" name="name" placeholder="ФИО" required/><br />
@@ -28,7 +29,7 @@ require_once 'connection.php';
             </div>
             <input class="form-control" type="datetime-local" name="date" required/><br />
             <textarea class="form-control" name="message" placeholder="Комментарий к письму"></textarea><br />
-            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="submit" class="btn btn-outline-primary" >Отправить</button>
         </form>
     </div>
     </body>

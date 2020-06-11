@@ -6,5 +6,6 @@ $name = "root";
 $password = "";
 
 $link = mysqli_connect($host, $name, $password, $db);
-$query = "SELECT * FROM answers";
+$query = "SELECT * FROM mails";
 $result = mysqli_query($link, $query);
+

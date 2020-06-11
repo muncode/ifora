@@ -27,3 +27,8 @@ function checkForm(form) {
     }
     return true;
 }
+function ExportToExcel(){
+    var htmltable= document.getElementById('my-table-id');
+    var html = htmltable.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+}

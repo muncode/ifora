@@ -14,31 +14,74 @@ require_once 'connection.php';
 </head>
 <body>
 <div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ФИО</th>
-            <th scope="col">Телефон</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Дата время</th>
-            <th scope="col">Комментарий</th>
-        </tr>
-        </thead>
-        <tbody>
+    <?
+    function login($login,$password) {
+        global $link;
+        $loginResult = mysqli_query($link,"SELECT * FROM userlist WHERE login='$login' AND password='$password' AND admin='1'");
+        if(mysqli_num_rows($loginResult) == 1) {  //Если есть совпадение,
+            return true;
+        } else {//Если такого пользователя не существует, данные стираются,
+            unset($_SESSION['login'],$_SESSION['password']);
+            return false;
+        }
+    }
+    if(isset($_POST['login']) && isset($_POST['password'])) {
+        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['password'] = $_POST['password'];
+    }
+    if(isset($_SESSION['login']) && isset($_SESSION['password'])) {
+        if(login($_SESSION['login'],$_SESSION['password'])) {//Попытка авторизации
+            //Тут будут проходить все операции
+            ?>
+            <table class="table" id="my-table-id">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Дата время</th>
+                    <th scope="col">Комментарий</th>
+                </tr>
+                </thead>
+                <tbody>
 
-    <?php
-    foreach ($result as $row){
-        echo '<tr> <th scope="row">' . $row['id'] .  '</th>';
-        echo '<td>' . $row['name'] . '</td>';
-        echo '<td>' . $row['phone'] . '</td>';
-        echo '<td>' . $row['mail'] . '</td>';
-        echo '<td>' . $row['date'] . '</td>';
-        echo '<td>' . $row['comment'] . '</td></tr>';
+                <?php
+                foreach ($result as $row){
+                    echo '<tr> <th scope="row">' . $row['id'] .  '</th>';
+                    echo '<td>' . $row['name'] . '</td>';
+                    echo '<td>' . $row['phone'] . '</td>';
+                    echo '<td>' . $row['mail'] . '</td>';
+                    echo '<td>' . $row['date'] . '</td>';
+                    echo '<td>' . $row['comment'] . '</td></tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-outline-primary" onClick="ExportToExcel()">Скачать</button>
+            <?
+            $echo = null; //Обнуление переменной, чтобы удалить из вывода    форму авторизации
+        }
+        else {
+            echo "Логин и пароль не верны.";
+        }
+    }
+    else {
+        ?>
+        <br/>
+        <h5>Войти в панель администратора</h5><br/>
+        <div class='table'>
+                <div class='table-content'>
+                    <form method='post'>
+                        <input class="form-control" type='text' placeholder='Логин' name='login' required /><br>
+                        <input class="form-control" type='password' placeholder='Пароль' name='password' required /><br>
+                        <button type="submit" class="btn btn-outline-primary" >Войти</button>
+                    </form>
+                </div>
+        </div>
+        <?
     }
     ?>
-        </tbody>
-    </table>
 </div>
 </body>
 </html>

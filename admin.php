@@ -62,6 +62,7 @@ require_once 'connection.php';
             $echo = null;
         }
         else {
+
             echo "Логин и пароль не верны.";
         }
     }
